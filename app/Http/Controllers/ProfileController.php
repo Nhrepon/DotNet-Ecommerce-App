@@ -20,15 +20,19 @@ class ProfileController extends Controller
         ];
 
 
-        $name="access_token";
-        $value ="123-XYZ";
-        $minutes =1;
-        $path ="/";
-        $domain =$_SERVER['SERVER_NAME'];
-        $secure =false;
-        $httpOnly =true;
+        $name = "access_token";
+        $value = "123-XYZ";
+        $minutes = 1;
+        $path = '/';
+        $domain = $_SERVER['SERVER_NAME'];
+        $secure = false;
+        $httpOnly = true;
 
-        return response($data, 200)->cookie($name, $value, $minutes, $path, $domain, $secure, $httpOnly);
+        $cookie = cookie($name, $value, $minutes, '', '', $secure, $httpOnly)->withPath($path)->withDomain($domain);
+
+
+
+        return response($data, 200)->cookie($cookie);
 
 
     }
