@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Ecommerce_api.Models
+namespace DotNet_Ecommerce.Models
 {
     public class Brands
     {

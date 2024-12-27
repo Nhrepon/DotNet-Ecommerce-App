@@ -1,4 +1,4 @@
-using Ecommerce_api.Data;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
@@ -7,13 +7,9 @@ using Newtonsoft.Json.Serialization;
 var builder = WebApplication.CreateBuilder(args);
 
 
-// builder.Services.AddDbContext<AppDbContext>(options => {
-//     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-//     });
-
 // "ConnectionStrings": {
 //     "DefaultConnection": "Server=(localdb)\\mssqllocaldb;
-//     Database=Ecommerce_api;
+//     Database=DotNet_Ecommerce;
 //     Trusted_Connection=True;
 //     MultipleActiveResultSets=true"
 //   }
@@ -52,7 +48,7 @@ if(app.Environment.IsDevelopment()){
 }
 
 //app.UseCors();
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 // web api Get, Post, Delete, Put
 // app.MapGet("/", () => "Dotnet e-commerce api working fine ... ");

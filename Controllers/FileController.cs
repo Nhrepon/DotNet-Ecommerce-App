@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace Ecommerce_api.Controllers
+namespace DotNet_Ecommerce.Controllers
 {
     [Route("api/")]
     public class FileController : Controller

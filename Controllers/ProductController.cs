@@ -1,8 +1,8 @@
 
-using Ecommerce_api.Models;
+using DotNet_Ecommerce.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Ecommerce_api.Controllers
+namespace DotNet_Ecommerce.Controllers
 {
     [ApiController]
     [Route("api/products")]
@@ -85,6 +85,7 @@ namespace Ecommerce_api.Controllers
             }
             return NotFound(new {status = "failed", message = "Product not found"});
         }
+
 
 
 

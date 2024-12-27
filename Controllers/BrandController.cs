@@ -4,11 +4,11 @@ using System.Data;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
-using Ecommerce_api.Models;
+using DotNet_Ecommerce.Models;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 
-namespace Ecommerce_api.Controllers
+namespace DotNet_Ecommerce.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
