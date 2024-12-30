@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ProductStore from "../../store/ProductStore";
-import DetailSkeleton from "../../skeleton/DetailSkeleton";
 import ProductImage from "../../components/products/ProductImage";
 import parse from "html-react-parser";
 import ReviewComponent from "../../components/products/ReviewComponent";
@@ -47,7 +46,7 @@ const Details = () => {
   };    
 
   if (productDetails === null) {
-    return <DetailSkeleton />;
+    return <div>Loading</div>;
   } else {
     return (
       <div>

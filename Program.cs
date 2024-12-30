@@ -1,4 +1,5 @@
 
+using DotNet_Ecommerce.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
@@ -30,15 +31,24 @@ builder.Services.AddControllers();
 builder.Services.AddControllersWithViews().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
 
+
+// // Database connection
+// builder.Services.AddDbContext<AppDbContex>(options => {
+// var cs = builder.Configuration.GetConnectionString("MysqlConnection");
+// options.UseMySql(cs);
+// });
+
+
+
 // Swagger api
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// builder.Services.AddCors(options => {
-//     options.AddDefaultPolicy(builder => {
-//         builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
-//     });
-// });
+builder.Services.AddCors(options => {
+    options.AddDefaultPolicy(builder => {
+        builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
 
@@ -47,8 +57,8 @@ if(app.Environment.IsDevelopment()){
     app.UseSwaggerUI();
 }
 
-//app.UseCors();
-//app.UseHttpsRedirection();
+app.UseCors();
+app.UseHttpsRedirection();
 
 // web api Get, Post, Delete, Put
 // app.MapGet("/", () => "Dotnet e-commerce api working fine ... ");
@@ -157,44 +167,33 @@ app.UseStaticFiles(new StaticFileOptions{
 // app.MapGet("/api/product/{id:int}")
 
 
-// Serve static files from the "dist" folder 
-var distPath = Path.Combine(Directory.GetCurrentDirectory(), "client", "dist"); 
-Console.WriteLine($"Serving static files from: {distPath}");
-app.UseStaticFiles(new StaticFileOptions { 
-    FileProvider = new PhysicalFileProvider(distPath),
-    RequestPath = "" 
-    });
 
 
+
+app.UseRouting();
 
 app.MapControllers();
-//app.UseRouting();
+
+
+// Serve static files from the "dist" folder inside the "client" folder 
+var distPath = Path.Combine(Directory.GetCurrentDirectory(), "client", "dist"); 
+Console.WriteLine($"Serving static files from: {distPath}"); 
+app.UseStaticFiles(new StaticFileOptions { 
+    FileProvider = new PhysicalFileProvider(distPath), RequestPath = "" 
+    }); 
 // Fallback routing to index.html 
-app.MapFallbackToFile("client/dist/index.html", new StaticFileOptions { 
-    FileProvider = new PhysicalFileProvider(distPath) 
-    });
-
-// app.UseEndpoints(endpoints => 
-// { endpoints.MapControllers(); 
-// endpoints.MapFallbackToFile("index.html", new StaticFileOptions { 
-//     FileProvider = new PhysicalFileProvider(distPath) 
-//     }); 
-//     });
+app.MapFallbackToFile("index.html", new StaticFileOptions { FileProvider = new PhysicalFileProvider(distPath) });
 
 
 
 
 
-
-
-
+//app.MapControllers();
 
 
 app.Run();
 
 //public record Product(int Id, string Name, decimal Price);
-
-
 
 // public record Product{
 //     public Guid Id { get; set; } 

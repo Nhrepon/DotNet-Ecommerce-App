@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import StarRatings from "react-star-ratings";
 import ProductStore from "../../store/ProductStore";
-import ProductSkeleton from "../../skeleton/ProductSkeleton";
 
 const Products = () => {
   const { listByRemark, getRemarkList } = ProductStore();
@@ -102,7 +101,7 @@ const Products = () => {
                   tabIndex="0"
                 >
                   {
-                    listByRemark===null?(<ProductSkeleton />):(
+                    listByRemark===null?(<div>Loading</div>):(
                       <div className="container">
                     <div className="row">
                       {listByRemark.map((item, i) => {

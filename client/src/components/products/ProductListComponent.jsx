@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import StarRatings from "react-star-ratings";
 import ProductStore from "../../store/ProductStore";
-import ProductSkeleton from "../../skeleton/ProductSkeleton";
 import { useEffect } from "react";
 
 const ProductListComponent = () => {
@@ -98,7 +97,8 @@ const ProductListComponent = () => {
           <div className="container">
             <div className="row">
               {ProductList === null ? (
-                <ProductSkeleton />
+                // <ProductSkeleton />
+                <div>Loading</div>
               ) : (
                 <div className="container">
                   <div className="row">

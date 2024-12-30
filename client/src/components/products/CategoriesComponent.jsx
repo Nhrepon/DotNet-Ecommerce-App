@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import CategorySkeleton from "../../skeleton/CategorySkeleton";
+
 import ProductStore from "../../store/ProductStore";
 
 const Categories = () => {
   const { categoryList } = ProductStore();
   if (categoryList == null) {
-    return <CategorySkeleton />;
+    return <div>Loading</div>;
   } else {
     return (
       <div className="section">
